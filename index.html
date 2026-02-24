@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Software | Soluciones Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background: url('https://i.pinimg.com/originals/76/00/5a/76005a74232a061e7567d2d7df04eadb.gif') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Rajdhani', sans-serif;
+            color: white; overflow-x: hidden;
+        }
+
+        /* PANTALLA DE CARGA */
+        #loader {
+            position: fixed; width: 100%; height: 100%;
+            background: #000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999; transition: 0.6s;
+        }
+
+        /* NAVEGACIÓN */
+        nav {
+            padding: 20px 40px; display: flex; justify-content: space-between;
+            align-items: center; background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px); position: fixed; top: 0; width: 100%;
+            box-sizing: border-box; z-index: 500; border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        
+        /* LA LUNA GIRATORIA */
+        .rotating-moon {
+            font-size: 1.8rem; color: #00f2ff;
+            animation: moonRotate 4s linear infinite;
+            text-shadow: 0 0 10px #00f2ff;
+        }
+        @keyframes moonRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text { font-family: 'Orbitron'; color: #00f2ff; font-weight: bold; font-size: 1.4rem; letter-spacing: 2px; }
+
+        /* EL BOTÓN DE LAS 3 RAYAS (CORREGIDO) */
+        .menu-btn {
+            color: #00f2ff; font-size: 1.8rem; cursor: pointer; z-index: 600;
+            transition: 0.3s;
+        }
+
+        /* MENU LATERAL - OCULTO POR DEFECTO */
+        .side-menu {
+            position: fixed; top: 0; right: -100%; /* Totalmente fuera */
+            width: 300px; height: 100vh;
+            background: rgba(5, 5, 10, 0.98); backdrop-filter: blur(20px);
+            z-index: 1000; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 100px 30px; border-left: 2px solid #00f2ff;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+        .side-menu.active { right: 0; }
+
+        .side-menu a {
+            display: flex; align-items: center; gap: 15px;
+            padding: 18px 0; color: white; text-decoration: none;
+            font-family: 'Orbitron'; font-size: 1.1rem;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1); transition: 0.3s;
+        }
+        .side-menu a:hover { color: #00f2ff; padding-left: 10px; }
+
+        /* HERO */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        h1 { font-family: 'Orbitron'; font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; text-shadow: 0 0 20px #00f2ff; }
+        .tagline { color: #00f2ff; letter-spacing: 5px; font-weight: bold; margin-top: 10px; text-transform: uppercase; }
+
+        /* CUADROS PROFESIONALES */
+        .specs {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; padding: 0 10% 100px 10%; max-width: 1300px; margin: -50px auto 0 auto;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+            padding: 40px; border-radius: 20px; border: 1px solid rgba(0, 242, 255, 0.2);
+            text-align: center; transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: #00f2ff; box-shadow: 0 0 30px rgba(0, 242, 255, 0.3); }
+        .card i { font-size: 3.5rem; color: #00f2ff; margin-bottom: 20px; }
+        .card h3 { font-family: 'Orbitron'; margin-bottom: 15px; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <i class="fas fa-circle-notch fa-spin" style="font-size: 3rem; color: #00f2ff;"></i>
+        <p style="font-family: 'Orbitron'; margin-top: 20px;">INICIALIZANDO SISTEMA...</p>
+    </div>
+
+    <nav>
+        <div class="logo-container">
+            <i class="fas fa-moon rotating-moon"></i>
+            <div class="logo-text">LUNA SOFTWARE</div>
+        </div>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars-staggered"></i>
+        </div>
+    </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <div style="text-align: right; margin-bottom: 40px; cursor: pointer;" onclick="toggleMenu()">
+            <i class="fas fa-xmark fa-2xl" style="color: #00f2ff;"></i>
+        </div>
+        <a href="#"><i class="fas fa-code"></i> DESARROLLO</a>
+        <a href="#"><i class="fas fa-shield-halved"></i> AUDITORÍA</a>
+        <a href="#"><i class="fas fa-file-invoice"></i> TOS</a>
+        <a href="#"><i class="fas fa-circle-question"></i> FAQ</a>
+        <a href="#"><i class="fas fa-headset"></i> SOPORTE</a>
+    </div>
+
+    <section class="hero">
+        <h1>LUNA SOFTWARE</h1>
+        <p class="tagline">// High-End Software Engineering</p>
+        <div style="margin-top: 40px; opacity: 0.5;"><i class="fas fa-chevron-down fa-bounce fa-2xl"></i></div>
+    </section>
+
+    <div class="specs">
+        <div class="card">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Desarrollo Fullstack</h3>
+            <p>Software robusto y escalable. Programamos el futuro de tu empresa hoy mismo. 💻</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h3>Ciberseguridad</h3>
+            <p>Blindaje total de activos digitales. Si no pasa por nosotros, no entra nadie. 🔐</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-database"></i>
+            <h3>Optimización SQL</h3>
+            <p>Manejamos tus datos con la precisión de un cirujano. Rendimiento garantizado. 📊</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 600);
+            }, 1500);
+        };
+
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Software | TOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --bg-dark: rgba(5, 5, 10, 0.95);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background: url('https://i.pinimg.com/originals/76/00/5a/76005a74232a061e7567d2d7df04eadb.gif') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Rajdhani', sans-serif;
+            color: white; overflow-x: hidden;
+        }
+
+        /* --- NAVEGACIÓN (IDÉNTICA AL HOME) --- */
+        nav {
+            padding: 20px 40px; display: flex; justify-content: space-between;
+            align-items: center; background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px); position: fixed; top: 0; width: 100%;
+            box-sizing: border-box; z-index: 500; border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        
+        .rotating-moon {
+            font-size: 1.8rem; color: var(--primary);
+            animation: moonRotate 4s linear infinite;
+            text-shadow: 0 0 10px var(--primary);
+        }
+        @keyframes moonRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text { font-family: 'Orbitron'; color: var(--primary); font-weight: bold; font-size: 1.4rem; letter-spacing: 2px; }
+
+        .menu-btn { color: var(--primary); font-size: 1.8rem; cursor: pointer; }
+
+        /* --- MENU LATERAL (SISTEMA ANTI-DESASTRE) --- */
+        .side-menu {
+            position: fixed; top: 0; right: -100%; 
+            width: 320px; height: 100vh;
+            background: var(--bg-dark); backdrop-filter: blur(20px);
+            z-index: 1000; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 100px 20px; border-left: 2px solid var(--primary);
+            display: flex; flex-direction: column; gap: 5px;
+            box-sizing: border-box; visibility: hidden;
+        }
+        .side-menu.active { right: 0; visibility: visible; }
+
+        .side-menu a {
+            display: flex; align-items: center; gap: 20px;
+            padding: 15px 25px; color: white !important; 
+            text-decoration: none !important;
+            font-family: 'Orbitron'; font-size: 1rem;
+            border-radius: 10px; transition: 0.3s;
+        }
+        .side-menu a:hover {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--primary) !important;
+            padding-left: 35px;
+        }
+        .side-menu a i { color: var(--primary); width: 25px; text-align: center; }
+
+        .close-menu { position: absolute; top: 30px; right: 30px; color: var(--primary); cursor: pointer; font-size: 2rem; }
+
+        /* --- CONTENIDO DEL TOS --- */
+        .tos-wrapper {
+            margin-top: 120px; padding: 40px 10%;
+            display: flex; justify-content: center;
+        }
+
+        .tos-card {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 50px; border-radius: 20px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            max-width: 900px; width: 100%;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 { font-family: 'Orbitron'; color: var(--primary); text-align: center; margin-bottom: 40px; font-size: 2.5rem; text-shadow: 0 0 15px var(--primary); }
+        
+        .tos-section { margin-bottom: 35px; }
+        .tos-section h3 { 
+            font-family: 'Orbitron'; color: var(--primary); 
+            border-left: 4px solid var(--primary); padding-left: 15px;
+            margin-bottom: 15px; font-size: 1.3rem;
+        }
+        .tos-section p { line-height: 1.8; color: #ddd; font-size: 1.1rem; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <i class="fas fa-moon rotating-moon"></i>
+            <div class="logo-text">LUNA SOFTWARE</div>
+        </div>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars-staggered"></i>
+        </div>
+    </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="close-menu" onclick="toggleMenu()">
+            <i class="fas fa-xmark"></i>
+        </div>
+        <a href="/"><i class="fas fa-house"></i> INICIO</a>
+        <a href="/servicios"><i class="fas fa-code"></i> SERVICIOS</a>
+        <a href="/tos"><i class="fas fa-file-invoice"></i> TOS</a>
+        <a href="/faq"><i class="fas fa-circle-question"></i> FAQ</a>
+        <a href="https://luna-ai-bot.vercel.app" target="_blank"><i class="fas fa-robot"></i> LUNA AI</a>
+    </div>
+
+    <div class="tos-wrapper">
+        <div class="tos-card">
+            <h1>TÉRMINOS DE SERVICIO</h1>
+            
+            <div class="tos-section">
+                <h3>1. Aceptación de los Términos</h3>
+                <p>Al acceder a los servicios de Luna Software, usted acepta que el uso de nuestras herramientas de ciberseguridad y desarrollo es para fines legales. Si lo pescan en algo raro, nosotros no lo conocemos. 🤫🚫</p>
+            </div>
+
+            <div class="tos-section">
+                <h3>2. Alcance del Servicio</h3>
+                <p>Ofrecemos auditorías de código y programación de alto nivel. Garantizamos que su sistema quedará más blindado que el carro de un banquero, pero la seguridad final depende de sus credenciales. 🔐🛡️</p>
+            </div>
+
+            <div class="tos-section">
+                <h3>3. Propiedad de Código</h3>
+                <p>El cliente mantiene la propiedad del producto final, pero las metodologías de optimización y la luna que gira son propiedad intelectual de Luna Software. No sea pirata. 🏴‍☠️✖️</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px; opacity: 0.5;">
+                © 2026 Luna Software | Ingeniería Profesional
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
